@@ -1,0 +1,21 @@
+logging:
+    level:
+        blog: WARN
+        org: WARN
+        org.hibernate.SQL: DEBUG
+server:
+    port: 8000
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: 1234
+        url: jdbc:mysql://localhost:3306/mobilele?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+                format_sql: false
+                show_sql: false

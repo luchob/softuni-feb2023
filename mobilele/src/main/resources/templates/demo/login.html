@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MobiLeLeLe</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand" href="/"><img alt="car picture" src="/img/car.png" class="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto col-12 justify-content-between">
+                <li class="nav-item"
+                >
+                    <a class="nav-link" href="/brands/all">All Brands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/offers/add">Add Offer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/offers/all">All Offers</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/">Action</a>
+                        <a class="dropdown-item" href="/">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="form-inline my-2 my-lg-0 border px-3">
+                        <div class="logged-user"
+                             text="Welcome, Gosho"></div>
+                        <a class="nav-link" href="/users/logout">Logout</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/login">Login</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+</div>
+
+<div class="container">
+    <h2 class="text-center text-white">Login Demo</h2>
+    <form th:method="POST" th:action="@{demo/login}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="form-group">
+            <label for="username" class="text-white font-weight-bold">Username</label>
+            <input th:value="${username}" id="username" name="username" type="text" min="2" max="50"
+                   class="form-control"
+                   placeholder="Username"/>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="text-white font-weight-bold">Password</label>
+            <input id="password" name="password" type="password" min="2"
+                   max="20" class="form-control"
+                   placeholder="Password"/>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer></footer>
+</div>
+</body>
+</html>

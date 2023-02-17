@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{/fragments/head}">
+</head>
+
+<body>
+
+<div>
+    <nav th:replace="~{/fragments/navigation}"></nav>
+</div>
+
+
+
+<div class="container">
+    <h2 class="text-center text-white">Upload Offer</h2>
+    <form method="POST" 
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="model">Model</label>
+                <select id="model" class="form-control">
+                    <option value="">- Select a model -</option>
+                    <optgroup label="Brand name">
+                        <option>Model</option>
+                    </optgroup>
+                </select>
+                <p class="errors alert alert-danger">
+                    Vechicle model is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="price" class="text-white font-weight-bold">Price</label>
+                <input id="price" type="number" min="0" step="100" class="form-control"
+                       placeholder="Suggested price"/>
+                <p  class="errors alert alert-danger">
+                    Suggested price is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
+                <select id="engine" class="form-control">
+                    <option value="">- Select engine type -</option>
+                    <option>
+                        Engine type
+                    </option>
+                </select>
+                <p class="errors alert alert-danger">
+                    Engine type is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
+                <select id="transmission" class="form-control">
+                    <option value="">- Select transmission type -</option>
+                    <option> Transmission type
+                    </option>
+                </select>
+                <p class="errors alert alert-danger">
+                    Transmission type is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="year" class="text-white font-weight-bold">Year</label>
+                <input id="year" type="number" min="1900" max="2099" step="1" class="form-control"
+                       placeholder="Manufacturing year"/>
+                <p class="errors alert alert-danger">
+                    Manufacturing year is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="mileage" class="text-white font-weight-bold">Mileage</label>
+                <input id="mileage" type="number" min="0" max="900000" step="1000"
+                       class="form-control"
+                       placeholder="Mileage in kilometers"/>
+                <p class="errors alert alert-danger">
+                    Mileage in kilometers is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="description">Description</label>
+            <textarea id="description" type="textarea" class="form-control" rows="3"
+                      placeholder="Description"></textarea>
+            <p class="errors alert alert-danger">
+                Description is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
+            <input id="imageUrl" type="url" class="form-control"
+                   placeholder="Put vehicle image URL here">
+            <p class="errors alert alert-danger">
+                Vehicle image URL is required.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit Offer"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>

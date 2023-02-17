@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MobiLeLeLe</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2 class="text-center text-white">Register User Demo</h2>
+
+    <form th:method="POST" th:action="@{/demo/register}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="username" class="text-white font-weight-bold">Username</label>
+                <input id="username" name="username" type="text" min="2" max="20" class="form-control"
+                       placeholder="First name"/>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+                <label for="password" class="text-white font-weight-bold">Password</label>
+                <input id="password" name="password" type="password" min="2" max="20" class="form-control"
+                       placeholder="Password"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-4 justify-content-center">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit"/>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div>
+    <footer></footer>
+</div>
+
+</body>
+</html>

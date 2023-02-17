@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head th:replace="~{/fragments/head}">
+</head>
+
+<body>
+
+<div>
+    <nav th:replace="~{/fragments/navigation}"></nav>
+</div>
+
+<div class="container">
+    <h2 class="text-center text-white m-3">All Brands</h2>
+    <div class='row mb-4 d-flex justify-content-around'>
+        <div  class="brand-section col-md-5 mr-auto d-flex flex-column">
+            <h2>Car brand:
+                <span >Brand name</span>
+            </h2>
+            <div>Models:
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Start Year</th>
+                        <th>End Year</th>
+                        <th>Picture</th>
+                    </tr>
+                    <tr>
+                        <th>No</th>
+                        <th >Model Name</th>
+                        <th >Model Category</th>
+                        <th >Model Start Year</th>
+                        <th >Model End Year</th>
+                        <th><img alt="image" src="/"
+                                 class="img-thumbnail rounded"></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+             <footer> </footer>
+    </div>
+</div>
+</body>
+</html>
