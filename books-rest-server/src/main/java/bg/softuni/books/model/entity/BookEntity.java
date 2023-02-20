@@ -62,7 +62,7 @@ public class BookEntity {
         "id=" + id +
         ", title='" + title + '\'' +
         ", isbn='" + isbn + '\'' +
-        ", author=" + author +
+        ", author=" + (author != null ? author.getName() : null) +
         '}';
   }
 }
