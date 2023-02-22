@@ -11,31 +11,31 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto col-12 justify-content-between">
-        <li class="nav-item" sec:authorize="isAuthenticated()">
+        <li class="nav-item">
           <a class="nav-link" th:href="@{/pages/all}">All users</a>
         </li>
-        <li class="nav-item" sec:authorize="hasRole('MODERATOR')">
+        <li class="nav-item">
           <a class="nav-link" th:href="@{/pages/moderators}">Moderators</a>
         </li>
-        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+        <li class="nav-item">
           <a class="nav-link" th:href="@{/pages/admins}">Admins</a>
         </li>
 
         <!-- Logout start -->
         <li class="nav-item">
           <div class="form-inline my-2 my-lg-0 px-3">
-            <div class="text-white" sec:authorize="isAuthenticated()">Welcome, <th:block sec:authentication="name"></th:block>!</div>
-            <form th:action="@{/users/logout}" sec:authorize="isAuthenticated()" th:method="post">
+            <div class="text-white">Welcome, !</div>
+            <form>
               <input class="btn btn-link nav-link" type="submit" value="Logout">
             </form>
           </div>
         </li>
         <!-- EO: Logout start -->
 
-        <li class="nav-item" sec:authorize="!isAuthenticated()" >
+        <li class="nav-item">
           <a class="nav-link" th:href="@{/users/register}">Register</a>
         </li>
-        <li class="nav-item" sec:authorize="!isAuthenticated()">
+        <li class="nav-item">
           <a class="nav-link" th:href="@{/users/login}">Login</a>
         </li>
 
