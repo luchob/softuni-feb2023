@@ -15,13 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfiguration {
-
-  private final UserRepository userRepository;
-
-  public SecurityConfiguration(UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
-
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.
@@ -49,7 +42,7 @@ public class SecurityConfiguration {
   }
 
   @Bean
-  public UserDetailsService userDetailsService() {
+  public UserDetailsService userDetailsService(UserRepository userRepository) {
     return new ApplicationUserDetailsService(userRepository);
   }
 
