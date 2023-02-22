@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head::head}"></head>
+
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}">
+  Navbar
+</div>
+
+<div class="container">
+  <h2 class="text-center text-white">Register User</h2>
+  <form
+      class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+    <div class="row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="firstName" class="text-white font-weight-bold">First Name</label>
+        <input
+            id="firstName"
+            name="firstName"
+            type="text"
+            class="form-control"
+            placeholder="First name"/>
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="lastName" class="text-white font-weight-bold">Last Name</label>
+        <input id="lastName"
+               name="lastName"
+               type="text" min="2" max="20" class="form-control"
+               placeholder="Last name"/>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="email" class="text-white font-weight-bold">Email</label>
+        <input id="email"
+               name="email"
+               type="text" min="2" max="20" class="form-control"
+               placeholder="First name"/>
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="password" class="text-white font-weight-bold">Password</label>
+        <input id="password"
+               name="password"
+               type="password" min="2" max="20" class="form-control"
+               placeholder="Password"/>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-3">
+      <label for="confirmPassword" class="text-white font-weight-bold">Confirm Password</label>
+      <input id="confirmPassword"
+             name="confirmPassword"
+             type="password" min="2" max="20" class="form-control"
+             placeholder="Confirm your password"/>
+      <p class="invalid-feedback errors alert alert-danger">
+        Confirmation password is required.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-4">
+        <div class="button-holder d-flex">
+          <input type="submit" class="btn btn-info btn-lg" value="Create account"/>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div>
+  <footer> </footer>
+</div>
+
+</body>
+</html>

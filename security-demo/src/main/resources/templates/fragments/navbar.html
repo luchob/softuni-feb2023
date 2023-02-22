@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+
+<div th:fragment="navbar">
+
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto col-12 justify-content-between">
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <a class="nav-link" th:href="@{/pages/all}">All users</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('MODERATOR')">
+          <a class="nav-link" th:href="@{/pages/moderators}">Moderators</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-link" th:href="@{/pages/admins}">Admins</a>
+        </li>
+
+        <!-- Logout start -->
+        <li class="nav-item">
+          <div class="form-inline my-2 my-lg-0 px-3">
+            <div class="text-white" sec:authorize="isAuthenticated()">Welcome, <th:block sec:authentication="name"></th:block>!</div>
+            <form th:action="@{/users/logout}" sec:authorize="isAuthenticated()" th:method="post">
+              <input class="btn btn-link nav-link" type="submit" value="Logout">
+            </form>
+          </div>
+        </li>
+        <!-- EO: Logout start -->
+
+        <li class="nav-item" sec:authorize="!isAuthenticated()" >
+          <a class="nav-link" th:href="@{/users/register}">Register</a>
+        </li>
+        <li class="nav-item" sec:authorize="!isAuthenticated()">
+          <a class="nav-link" th:href="@{/users/login}">Login</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+</div>
+
+</body>
+</html>
