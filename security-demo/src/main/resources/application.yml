@@ -32,3 +32,4 @@ app:
 logging:
   level:
     org.springframework.security: TRACE
+    org.thymeleaf: TRACE
