@@ -33,7 +33,14 @@ public class SecurityConfiguration {
             usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
             passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
         defaultSuccessUrl("/").
-        failureForwardUrl("/users/login-error");
+        failureForwardUrl("/users/login-error").and().
+         logout().
+        // which is the logout url, must be POST request
+            logoutUrl("/users/logout").
+        // on logout go to the home page
+            logoutSuccessUrl("/").
+        // invalidate the session and delete the cookies
+            invalidateHttpSession(true);
 
     return http.build();
   }
