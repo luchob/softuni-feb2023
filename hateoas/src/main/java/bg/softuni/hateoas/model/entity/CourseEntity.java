@@ -1,4 +1,4 @@
-package bg.softuni.hateoas.model;
+package bg.softuni.hateoas.model.entity;
 
 
 import jakarta.persistence.Entity;
