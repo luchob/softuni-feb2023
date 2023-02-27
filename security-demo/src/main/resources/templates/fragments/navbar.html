@@ -11,21 +11,24 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto col-12 justify-content-between">
-        <li class="nav-item">
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <!-- Logged users, no mather of the roles -->
           <a class="nav-link" th:href="@{/pages/all}">All users</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" sec:authorize="hasRole('MODERATOR')">
           <a class="nav-link" th:href="@{/pages/moderators}">Moderators</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
           <a class="nav-link" th:href="@{/pages/admins}">Admins</a>
         </li>
 
         <!-- Logout start -->
         <li class="nav-item" sec:authorize="isAuthenticated()">
           <div class="form-inline my-2 my-lg-0 px-3">
-            <div class="text-white">Welcome, !</div>
-            <form>
+            <div class="text-white">Welcome, <th:block sec:authentication="name"></th:block>!</div>
+            <form
+                th:method="post"
+                th:action="@{/users/logout}">
               <input class="btn btn-link nav-link" type="submit" value="Logout">
             </form>
           </div>
