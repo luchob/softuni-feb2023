@@ -40,7 +40,9 @@ public class BookService {
   }
 
   public void deleteById(Long bookId) {
-    bookRepository.deleteById(bookId);
+    bookRepository.
+        findById(bookId).
+        ifPresent(bookRepository::delete);
   }
 
   public Optional<BookDTO> findBookById(Long bookId) {
