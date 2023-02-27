@@ -7,11 +7,7 @@ function reloadBooks() {
   let booksCntr = document.getElementById('books-container')
   booksCntr.innerHTML = ''
 
-  let requestOptions = {
-    method: 'GET'
-  }
-
-  fetch("http://localhost:8080/api/books", requestOptions).
+  fetch("http://localhost:8080/api/books").
     then(response => response.json()).
     then(json => json.forEach(book => {
       // create row
