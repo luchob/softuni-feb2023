@@ -2,6 +2,8 @@ let loadBooksBtn = document.getElementById("loadBooks");
 
 loadBooksBtn.addEventListener('click', reloadBooks)
 
+// TODO: create new book
+
 function reloadBooks() {
 
   let booksCntr = document.getElementById('books-container')
@@ -23,6 +25,14 @@ function reloadBooks() {
       // atuhor
       authorCol.textContent = book.author.name
       isbnCol.textContent = book.isbn
+      //actions
+      //delete btn
+      let deleteBtn = document.createElement('button')
+      deleteBtn.innerText = 'DELETE'
+      deleteBtn.dataset.id = book.id
+      deleteBtn.addEventListener('click', deleteBtnClicked)
+
+      actionCol.appendChild(deleteBtn)
 
       row.appendChild(titleCol)
       row.appendChild(authorCol)
@@ -31,5 +41,23 @@ function reloadBooks() {
 
       booksCntr.appendChild(row)
   }))
+
+}
+
+function deleteBtnClicked(event) {
+  let bookId = event.target.dataset.id;
+
+  deleteBook(bookId)
+}
+
+function deleteBook(bookId) {
+
+  var requestOptions = {
+    method: 'DELETE'
+  }
+
+  fetch(`http://localhost:8080/api/books/${bookId}`, requestOptions).
+    then(_ => reloadBooks()).
+    catch(error => console.log('error', error))
 
 }
