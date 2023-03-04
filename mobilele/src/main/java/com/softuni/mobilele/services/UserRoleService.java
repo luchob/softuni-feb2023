@@ -2,9 +2,9 @@ package com.softuni.mobilele.services;
 
 import com.softuni.mobilele.domain.dtoS.model.UserRoleModel;
 import com.softuni.mobilele.domain.dtoS.veiw.UserRoleViewDto;
-import com.softuni.mobilele.domain.enitities.UserRole;
-import com.softuni.mobilele.domain.enums.Role;
-import com.softuni.mobilele.repositories.RoleRepository;
+import com.softuni.mobilele.domain.entities.UserRoleEntity;
+import com.softuni.mobilele.domain.enums.UserRoleEnum;
+import com.softuni.mobilele.repositories.UserRoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserRoleService implements DataBaseInitService {
-    private final RoleRepository roleRepository;
+    private final UserRoleRepository roleRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserRoleService(RoleRepository roleRepository, ModelMapper modelMapper) {
+    public UserRoleService(UserRoleRepository roleRepository, ModelMapper modelMapper) {
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
         this.dbInit();
@@ -30,10 +30,10 @@ public class UserRoleService implements DataBaseInitService {
     @Override
     public void dbInit() {
         if (!isDbInit()) {
-            List<UserRole> roles = new ArrayList<>();
+            List<UserRoleEntity> roles = new ArrayList<>();
 
-            roles.add(new UserRole().setRole(Role.USER));
-            roles.add(new UserRole().setRole(Role.ADMIN));
+            roles.add(new UserRoleEntity().setRole(UserRoleEnum.USER));
+            roles.add(new UserRoleEntity().setRole(UserRoleEnum.ADMIN));
 
             this.roleRepository.saveAllAndFlush(roles);
         }
@@ -59,7 +59,7 @@ public class UserRoleService implements DataBaseInitService {
     }
 
     public UserRoleModel findRoleByName(String name) {
-        return this.modelMapper.map(this.roleRepository.findByRole(Role.valueOf(name))
+        return this.modelMapper.map(this.roleRepository.findByRole(UserRoleEnum.valueOf(name))
                         .orElseThrow(NoSuchElementException::new),
                 UserRoleModel.class);
     }

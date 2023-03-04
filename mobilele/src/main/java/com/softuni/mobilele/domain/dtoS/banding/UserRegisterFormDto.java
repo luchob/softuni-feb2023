@@ -1,6 +1,6 @@
 package com.softuni.mobilele.domain.dtoS.banding;
 
-import com.softuni.mobilele.domain.enums.Role;
+import com.softuni.mobilele.domain.enums.UserRoleEnum;
 import com.softuni.mobilele.validations.matchingPasswords.PasswordMatch;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -29,7 +29,7 @@ public class UserRegisterFormDto {
     private String lastName;
 
     @NotNull
-    private Role role;
+    private UserRoleEnum role;
 
     public String getUsername() {
         return username;
@@ -71,11 +71,11 @@ public class UserRegisterFormDto {
         this.lastName = lastName;
     }
 
-    public Role getRole() {
+    public UserRoleEnum getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(UserRoleEnum role) {
         this.role = role;
     }
 }

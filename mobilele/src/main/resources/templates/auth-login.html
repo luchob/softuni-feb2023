@@ -15,7 +15,6 @@
 
     <form th:method="POST"
           th:action="@{/users/login}"
-          th:object="${userLoginForm}"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
 
         <div class="form-group">
@@ -39,12 +38,11 @@
             <label for="password" class="text-white font-weight-bold">Password</label>
             <input value="password" id="password" name="password" type="password" min="2"
                    max="20" class="form-control"
-                   placeholder="Password"
-                   th:value="*{password}"/>
+                   placeholder="Password"/>
 
         </div>
 
-        <p th:if="${#fields.hasErrors('*')}"
+        <p
            class="errors alert alert-danger">
             Invalid username or password.
         </p>

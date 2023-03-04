@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.enitities;
+package com.softuni.mobilele.domain.entities;
 
 import com.softuni.mobilele.domain.enums.ModelCategory;
 import jakarta.persistence.*;

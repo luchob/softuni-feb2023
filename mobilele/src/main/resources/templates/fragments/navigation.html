@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org",
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+
+
 <nav th:fragment="navigation" class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-  <a class="navbar-brand" href="/"><img alt="car picture" src="/img/car.png" class="logo"></a>
+  <a class="navbar-brand" href="/">
+    <img alt="car picture" th:src="@{/images/car.png}" class="logo">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,7 +18,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-    <th:block th:if="${@loggedUser.id == null}">
+    <th:block sec:authorize="!isAuthenticated()">
       <ul class="navbar-nav mr-auto col-12 justify-content-end">
         <li class="nav-item">
           <a class="nav-link" th:href="@{/users/register}">Register</a>
@@ -19,7 +29,7 @@
         </li>
       </ul>
     </th:block>
-    <th:block th:unless="${@loggedUser.id != null}">
+    <th:block>
       <ul class="navbar-nav mr-auto col-12 justify-content-end">
         <li class="nav-item">
           <a class="nav-link" th:href="@{/brands/all}">All Brands</a>
@@ -32,23 +42,12 @@
         <li class="nav-item">
           <a class="nav-link" href="/offers/all">All Offers</a>
         </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/">Action</a>
-            <a class="dropdown-item" href="/">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/">Something else here</a>
-          </div>
-        </li>
+    </th:block>
+    <th:block>
 
         <li class="nav-item">
           <form method="POST" th:action="@{/users/logout}"  class="form-inline my-2 my-lg-0 border px-3">
-            <button type="submit" name="submit" value="value" class="link-button">Logout</button>
+            <input class="btn btn-link nav-link" type="submit" value="Logout">
           </form>
 
         </li>
@@ -56,3 +55,6 @@
     </th:block>
   </div>
 </nav>
+
+</body>
+</html>

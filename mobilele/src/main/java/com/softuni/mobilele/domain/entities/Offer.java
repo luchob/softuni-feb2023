@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.enitities;
+package com.softuni.mobilele.domain.entities;
 
 import com.softuni.mobilele.domain.enums.Engine;
 import com.softuni.mobilele.domain.enums.Transmission;
@@ -40,7 +40,7 @@ public class Offer extends BaseEntity {
     private Model model;
 
     @ManyToOne
-    private User seller;
+    private UserEntity seller;
 
     public String getDescription() {
         return description;
@@ -132,11 +132,11 @@ public class Offer extends BaseEntity {
         return this;
     }
 
-    public User getSeller() {
+    public UserEntity getSeller() {
         return seller;
     }
 
-    public Offer setSeller(User seller) {
+    public Offer setSeller(UserEntity seller) {
         this.seller = seller;
         return this;
     }
