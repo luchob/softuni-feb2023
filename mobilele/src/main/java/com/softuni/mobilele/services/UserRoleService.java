@@ -1,4 +1,4 @@
-package com.softuni.mobilele.services.role;
+package com.softuni.mobilele.services;
 
 import com.softuni.mobilele.domain.dtoS.model.UserRoleModel;
 import com.softuni.mobilele.domain.dtoS.veiw.UserRoleViewDto;
@@ -15,12 +15,12 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
-public class UserRoleServiceImpl implements UserRoleService {
+public class UserRoleService implements DataBaseInitService {
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserRoleServiceImpl(RoleRepository roleRepository, ModelMapper modelMapper) {
+    public UserRoleService(RoleRepository roleRepository, ModelMapper modelMapper) {
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
         this.dbInit();
@@ -51,7 +51,6 @@ public class UserRoleServiceImpl implements UserRoleService {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public List<UserRoleModel> findAllRoles() {
         return this.roleRepository.findAll()
                 .stream()
@@ -59,7 +58,6 @@ public class UserRoleServiceImpl implements UserRoleService {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public UserRoleModel findRoleByName(String name) {
         return this.modelMapper.map(this.roleRepository.findByRole(Role.valueOf(name))
                         .orElseThrow(NoSuchElementException::new),
