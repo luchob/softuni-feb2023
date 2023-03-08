@@ -14,6 +14,8 @@
 <div class="container">
   <h2 class="text-center text-white">Register User</h2>
   <form
+      th:method="POST"
+      th:action="@{/users/register}"
       class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
     <div class="row">
       <div class="form-group col-md-6 mb-3">
@@ -49,16 +51,6 @@
                type="password" min="2" max="20" class="form-control"
                placeholder="Password"/>
       </div>
-    </div>
-    <div class="form-group col-md-6 mb-3">
-      <label for="confirmPassword" class="text-white font-weight-bold">Confirm Password</label>
-      <input id="confirmPassword"
-             name="confirmPassword"
-             type="password" min="2" max="20" class="form-control"
-             placeholder="Confirm your password"/>
-      <p class="invalid-feedback errors alert alert-danger">
-        Confirmation password is required.
-      </p>
     </div>
 
     <div class="row">
