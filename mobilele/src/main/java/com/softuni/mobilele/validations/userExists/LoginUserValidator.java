@@ -1,7 +1,7 @@
 package com.softuni.mobilele.validations.userExists;
 
 import com.softuni.mobilele.domain.dtoS.banding.UserLoginFormDto;
-import com.softuni.mobilele.domain.enitities.User;
+import com.softuni.mobilele.domain.entities.UserEntity;
 import com.softuni.mobilele.repositories.UserRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -20,7 +20,7 @@ public record LoginUserValidator(UserRepository userRepository,
 
     @Override
     public boolean isValid(UserLoginFormDto userLogin, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<User> loginCandidate = this.userRepository.findByUsername(userLogin.getUsername());
+        Optional<UserEntity> loginCandidate = this.userRepository.findByUsername(userLogin.getUsername());
 
         return loginCandidate.isPresent()
                 && loginCandidate.get()

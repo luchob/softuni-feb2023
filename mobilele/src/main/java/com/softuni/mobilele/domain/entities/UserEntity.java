@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.enitities;
+package com.softuni.mobilele.domain.entities;
 
 import jakarta.persistence.*;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class UserEntity extends BaseEntity {
 
     @Column
     private String username; // –  username of the user.
@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     private Boolean isActive; //– true OR false.
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    private List<UserRole> role; //–  user's role (User or Admin).
+    private List<UserRoleEntity> roles; //–  user's role (UserEntity or Admin).
 
     @Column
     private String imageUrl;//– a url of user's picture.
@@ -40,7 +40,7 @@ public class User extends BaseEntity {
         return username;
     }
 
-    public User setUsername(String username) {
+    public UserEntity setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -49,7 +49,7 @@ public class User extends BaseEntity {
         return password;
     }
 
-    public User setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -58,7 +58,7 @@ public class User extends BaseEntity {
         return firstName;
     }
 
-    public User setFirstName(String firstName) {
+    public UserEntity setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -67,7 +67,7 @@ public class User extends BaseEntity {
         return lastName;
     }
 
-    public User setLastName(String lastName) {
+    public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -76,17 +76,17 @@ public class User extends BaseEntity {
         return isActive;
     }
 
-    public User setActive(Boolean active) {
+    public UserEntity setActive(Boolean active) {
         isActive = active;
         return this;
     }
 
-    public List<UserRole> getRole() {
-        return role;
+    public List<UserRoleEntity> getRoles() {
+        return roles;
     }
 
-    public User setRole(List<UserRole> role) {
-        this.role = role;
+    public UserEntity setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
         return this;
     }
 
@@ -94,7 +94,7 @@ public class User extends BaseEntity {
         return imageUrl;
     }
 
-    public User setImageUrl(String imageUrl) {
+    public UserEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -103,7 +103,7 @@ public class User extends BaseEntity {
         return created;
     }
 
-    public User setCreated(Date created) {
+    public UserEntity setCreated(Date created) {
         this.created = created;
         return this;
     }
@@ -112,7 +112,7 @@ public class User extends BaseEntity {
         return modified;
     }
 
-    public User setModified(Date modified) {
+    public UserEntity setModified(Date modified) {
         this.modified = modified;
         return this;
     }

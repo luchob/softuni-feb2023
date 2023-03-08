@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.enitities;
+package com.softuni.mobilele.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

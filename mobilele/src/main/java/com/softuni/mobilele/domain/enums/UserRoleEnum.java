@@ -1,6 +1,6 @@
 package com.softuni.mobilele.domain.enums;
 
-public enum Role {
+public enum UserRoleEnum {
     USER,
     ADMIN
 }

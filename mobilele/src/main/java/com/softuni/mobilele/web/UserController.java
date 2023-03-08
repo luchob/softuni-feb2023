@@ -64,25 +64,6 @@ public class UserController extends BaseController {
         return super.view("auth-login");
     }
 
-    @PostMapping("/login")
-    public ModelAndView postLogin(@Valid @ModelAttribute(name = "userLoginForm") UserLoginFormDto userLoginForm,
-                                  BindingResult bindingResult,
-                                  ModelAndView modelAndView) {
-
-        if (bindingResult.hasErrors()) {
-            return super.view("auth-login",
-                    modelAndView.addObject("userLoginForm", userLoginForm));
-        }
-
-        return super.redirect("/");
-    }
-
-    @PostMapping("/logout")
-    public ModelAndView postLogout() {
-        this.userService.logout();
-        return super.redirect("/");
-    }
-
     // Model attributes
 
     @ModelAttribute(name = "userRegisterForm")
