@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.SecurityContextRepository;
@@ -34,6 +35,7 @@ public class UserService {
 
   public void registerUser(UserRegistrationDTO registrationDTO,
       Consumer<Authentication> successfulLoginProcessor) {
+
     UserEntity userEntity = new UserEntity().
         setFirstName(registrationDTO.getFirstName()).
         setLastName(registrationDTO.getLastName()).
@@ -42,7 +44,7 @@ public class UserService {
 
     userRepository.save(userEntity);
 
-    var userDetails = userDetailsService.loadUserByUsername(registrationDTO.getEmail());
+    UserDetails userDetails = userDetailsService.loadUserByUsername(registrationDTO.getEmail());
 
     Authentication authentication = new UsernamePasswordAuthenticationToken(
         userDetails,

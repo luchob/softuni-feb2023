@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/head::head}"></head>
 
 
@@ -12,6 +13,12 @@
 
 <div class="container">
   <h2 class="text-center text-white">Welcome to home page</h2>
+
+  <th:block sec:authorize="isAuthenticated()">
+      <h3 class="text-center text-white" th:text="${fullName}"></h3>
+      <h3 class="text-center text-white" th:text="${country}"></h3>
+  </th:block>
+
 </div>
 
 <div>

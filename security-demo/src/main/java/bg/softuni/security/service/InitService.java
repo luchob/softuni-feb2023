@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class InitService {
 
-  private UserRoleRepository userRoleRepository;
-  private UserRepository userRepository;
+  private final UserRoleRepository userRoleRepository;
+  private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
 
   public InitService(UserRoleRepository userRoleRepository,
@@ -56,6 +56,7 @@ public class InitService {
         setEmail("admin@example.com").
         setFirstName("Admin").
         setLastName("Adminov").
+        setCountry("Bulgaria").
         setPassword(passwordEncoder.encode("topsecret")).
         setRoles(userRoleRepository.findAll());
 
@@ -71,6 +72,7 @@ public class InitService {
         setEmail("moderator@example.com").
         setFirstName("Moderator").
         setLastName("Moderatorov").
+        setCountry("Greece").
         setPassword(passwordEncoder.encode("topsecret")).
         setRoles(List.of(moderatorRole));
 
@@ -83,6 +85,7 @@ public class InitService {
         setEmail("user@example.com").
         setFirstName("User").
         setLastName("Userov").
+        setCountry("Tanzania").
         setPassword(passwordEncoder.encode("topsecret"));
 
     userRepository.save(normalUser);
