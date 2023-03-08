@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.dtoS.model;
+package com.softuni.mobilele.domain.dtos.model;
 
 public class UserRoleModel {
     private String id;

@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.dtoS.veiw;
+package com.softuni.mobilele.domain.dtos.veiw;
 
 public class UserRoleViewDto {
     private String role;

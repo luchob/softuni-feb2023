@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.dtoS.banding;
+package com.softuni.mobilele.domain.dtos;
 
 import com.softuni.mobilele.domain.enums.UserRoleEnum;
 import com.softuni.mobilele.validations.matchingPasswords.PasswordMatch;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @PasswordMatch(password = "password", confirmPassword = "confirmPassword")
-public class UserRegisterFormDto {
+public class UserRegistrationFormDto {
 
     @NotNull
     @Size(min = 5, max = 20)

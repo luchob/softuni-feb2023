@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.dtoS.model;
+package com.softuni.mobilele.domain.dtos.model;
 
 public abstract class BaseEntityDto {
 

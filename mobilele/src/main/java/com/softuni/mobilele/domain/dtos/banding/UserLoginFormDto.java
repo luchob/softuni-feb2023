@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.dtoS.banding;
+package com.softuni.mobilele.domain.dtos.banding;
 
 import com.softuni.mobilele.validations.userExists.ValidateLoginUser;
 

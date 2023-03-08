@@ -1,7 +1,7 @@
 package com.softuni.mobilele.services;
 
-import com.softuni.mobilele.domain.dtoS.model.UserRoleModel;
-import com.softuni.mobilele.domain.dtoS.veiw.UserRoleViewDto;
+import com.softuni.mobilele.domain.dtos.model.UserRoleModel;
+import com.softuni.mobilele.domain.dtos.veiw.UserRoleViewDto;
 import com.softuni.mobilele.domain.entities.UserRoleEntity;
 import com.softuni.mobilele.domain.enums.UserRoleEnum;
 import com.softuni.mobilele.repositories.UserRoleRepository;
