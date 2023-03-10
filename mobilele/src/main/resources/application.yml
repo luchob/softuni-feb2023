@@ -1,10 +1,16 @@
 spring:
-    datasource:
-        driverClassName: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/mobilele?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-        username: root
-        password:
-    jpa:
-        database-platform: org.hibernate.dialect.MySQLDialect
-        hibernate:
-            ddl-auto: update
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mobilele?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+mail:
+  host: localhost
+  port: 1025
+  username: "admin@example.com"
+  password: ""
