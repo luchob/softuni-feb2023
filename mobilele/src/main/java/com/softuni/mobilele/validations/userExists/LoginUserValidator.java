@@ -20,7 +20,7 @@ public record LoginUserValidator(UserRepository userRepository,
 
     @Override
     public boolean isValid(UserLoginFormDto userLogin, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<UserEntity> loginCandidate = this.userRepository.findByUsername(userLogin.getUsername());
+        Optional<UserEntity> loginCandidate = this.userRepository.findByEmail(userLogin.getUsername());
 
         return loginCandidate.isPresent()
                 && loginCandidate.get()
