@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Upload</title>
+</head>
+<body>
+
+  <form th:action="@{/upload}"
+        th:method="post"
+        enctype="multipart/form-data">
+
+    <div>
+      <label for="upload-image">Image to upload</label>
+      <input type="file" id="upload-image" name="img" required="required">
+    </div>
+
+    <input type="submit"
+           th:value="Submit"/>
+
+  </form>
+
+</body>
+</html>
