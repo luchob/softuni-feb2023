@@ -15,6 +15,7 @@ public class SampleComponent {
   }
 
   public void doSomethingWrong() {
+    LOGGER.info("In doSomethingWrong!");
     throw new NullPointerException("Ups... I made a bug!");
   }
 
