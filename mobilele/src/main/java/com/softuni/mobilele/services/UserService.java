@@ -7,26 +7,28 @@ import com.softuni.mobilele.repositories.RoleRepository;
 import com.softuni.mobilele.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService implements DataBaseInitService {
 
     private final UserRepository userRepository;
     private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    private final String defaultAdminPass;
 
 
     @Autowired
     public UserService(UserRepository userRepository,
         RoleRepository roleRepository,
-        PasswordEncoder passwordEncoder) {
+        PasswordEncoder passwordEncoder,
+        @Value("${mobilele.admin.defaultpass}") String defaultAdminPass) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.defaultAdminPass = defaultAdminPass;
     }
 
     @Override
@@ -35,6 +37,7 @@ public class UserService implements DataBaseInitService {
             setFirstName("Admin").
             setLastName("Adminov").
             setEmail("admin@example.com").
+            setPassword(passwordEncoder.encode(defaultAdminPass)).
             setRoles(roleRepository.findAll());
 
         userRepository.save(admin);
@@ -43,6 +46,18 @@ public class UserService implements DataBaseInitService {
     @Override
     public boolean isDbInit() {
         return this.userRepository.count() == 0;
+    }
+
+    public void registerUser(UserRegisterFormDto registrationDTO) {
+        UserEntity userEntity = new UserEntity().
+            setFirstName(registrationDTO.getFirstName()).
+            setLastName(registrationDTO.getLastName()).
+            setEmail(registrationDTO.getEmail()).
+            setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
+
+        userRepository.save(userEntity);
+
+        //
     }
 
 }
