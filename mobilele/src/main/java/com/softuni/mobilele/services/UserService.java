@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements DataBaseInitService {
+public class UserService {
 
     private final UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -29,23 +29,6 @@ public class UserService implements DataBaseInitService {
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.defaultAdminPass = defaultAdminPass;
-    }
-
-    @Override
-    public void dbInit() {
-        UserEntity admin = new UserEntity().
-            setFirstName("Admin").
-            setLastName("Adminov").
-            setEmail("admin@example.com").
-            setPassword(passwordEncoder.encode(defaultAdminPass)).
-            setRoles(roleRepository.findAll());
-
-        userRepository.save(admin);
-    }
-
-    @Override
-    public boolean isDbInit() {
-        return this.userRepository.count() == 0;
     }
 
     public void registerUser(UserRegisterFormDto registrationDTO) {

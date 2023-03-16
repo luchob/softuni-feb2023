@@ -25,6 +25,11 @@ public class UserEntity extends BaseEntity {
     private Boolean isActive; //– true OR false.
 
     @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+        name = "users_roles",
+        joinColumns = { @JoinColumn(name = "user_id") },
+        inverseJoinColumns = { @JoinColumn(name = "role_id") }
+    )
     private List<UserRoleEntity> roles; //–  user's role (UserEntity or Admin).
 
 

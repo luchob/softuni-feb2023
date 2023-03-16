@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Order(0)
 @Service
-public class UserRoleService implements DataBaseInitService {
+public class UserRoleService {
 
   private final RoleRepository roleRepository;
   private final ModelMapper modelMapper;
@@ -26,24 +26,6 @@ public class UserRoleService implements DataBaseInitService {
   public UserRoleService(RoleRepository roleRepository, ModelMapper modelMapper) {
     this.roleRepository = roleRepository;
     this.modelMapper = modelMapper;
-    this.dbInit();
-  }
-
-
-  @Override
-  public void dbInit() {
-
-    List<UserRoleEntity> roles = new ArrayList<>();
-
-    roles.add(new UserRoleEntity().setRole(UserRoleEnum.USER));
-    roles.add(new UserRoleEntity().setRole(UserRoleEnum.ADMIN));
-
-    this.roleRepository.saveAllAndFlush(roles);
-  }
-
-  @Override
-  public boolean isDbInit() {
-    return this.roleRepository.count() == 0;
   }
 
   public List<UserRoleViewDto> getAll() {

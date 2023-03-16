@@ -5,12 +5,17 @@ import com.softuni.mobilele.domain.enums.Transmission;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
 
 @Entity
 @Table(name = "offers")
-public class Offer extends BaseEntity {
+public class OfferEntity extends BaseEntity {
     @Column
     private String description;
+
+    @JdbcTypeCode(java.sql.Types.VARCHAR)
+    private UUID offerId;
 
     @Enumerated(EnumType.STRING)
     private Engine engine;
@@ -30,12 +35,6 @@ public class Offer extends BaseEntity {
     @Column
     private String year;
 
-    @Column
-    private Date created;
-
-    @Column
-    private Date modified;
-
     @ManyToOne
     private Model model;
 
@@ -46,7 +45,7 @@ public class Offer extends BaseEntity {
         return description;
     }
 
-    public Offer setDescription(String description) {
+    public OfferEntity setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -55,7 +54,7 @@ public class Offer extends BaseEntity {
         return engine;
     }
 
-    public Offer setEngine(Engine engine) {
+    public OfferEntity setEngine(Engine engine) {
         this.engine = engine;
         return this;
     }
@@ -64,7 +63,7 @@ public class Offer extends BaseEntity {
         return imageUrl;
     }
 
-    public Offer setImageUrl(String imageUrl) {
+    public OfferEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -73,7 +72,7 @@ public class Offer extends BaseEntity {
         return mileage;
     }
 
-    public Offer setMileage(String mileage) {
+    public OfferEntity setMileage(String mileage) {
         this.mileage = mileage;
         return this;
     }
@@ -82,7 +81,7 @@ public class Offer extends BaseEntity {
         return price;
     }
 
-    public Offer setPrice(String price) {
+    public OfferEntity setPrice(String price) {
         this.price = price;
         return this;
     }
@@ -91,7 +90,7 @@ public class Offer extends BaseEntity {
         return transmission;
     }
 
-    public Offer setTransmission(Transmission transmission) {
+    public OfferEntity setTransmission(Transmission transmission) {
         this.transmission = transmission;
         return this;
     }
@@ -100,26 +99,8 @@ public class Offer extends BaseEntity {
         return year;
     }
 
-    public Offer setYear(String year) {
+    public OfferEntity setYear(String year) {
         this.year = year;
-        return this;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public Offer setCreated(Date created) {
-        this.created = created;
-        return this;
-    }
-
-    public Date getModified() {
-        return modified;
-    }
-
-    public Offer setModified(Date modified) {
-        this.modified = modified;
         return this;
     }
 
@@ -127,7 +108,7 @@ public class Offer extends BaseEntity {
         return model;
     }
 
-    public Offer setModel(Model model) {
+    public OfferEntity setModel(Model model) {
         this.model = model;
         return this;
     }
@@ -136,8 +117,17 @@ public class Offer extends BaseEntity {
         return seller;
     }
 
-    public Offer setSeller(UserEntity seller) {
+    public OfferEntity setSeller(UserEntity seller) {
         this.seller = seller;
+        return this;
+    }
+
+    public UUID getOfferId() {
+        return offerId;
+    }
+
+    public OfferEntity setOfferId(UUID offerId) {
+        this.offerId = offerId;
         return this;
     }
 }

@@ -50,7 +50,7 @@ public class StateController extends BaseController {
 
         HttpSession httpSession = request.getSession();
 
-        httpSession.setAttribute(STATE_USERNAME_KEY, userRegisterForm.getUsername());
+        httpSession.setAttribute(STATE_USERNAME_KEY, userRegisterForm.getEmail());
 
         return super.redirect("/demo/login");
     }
