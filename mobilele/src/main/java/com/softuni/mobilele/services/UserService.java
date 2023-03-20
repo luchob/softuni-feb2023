@@ -1,34 +1,37 @@
 package com.softuni.mobilele.services;
 
+import static org.hibernate.internal.util.collections.ArrayHelper.forEach;
+
 import com.softuni.mobilele.domain.dtoS.banding.UserRegisterFormDto;
-import com.softuni.mobilele.domain.dtoS.model.UserModel;
 import com.softuni.mobilele.domain.entities.UserEntity;
 import com.softuni.mobilele.repositories.RoleRepository;
 import com.softuni.mobilele.repositories.UserRepository;
-import org.modelmapper.ModelMapper;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
+    private Set<SessionRegistry> sessionRegistries;
+
     private final UserRepository userRepository;
-    private RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final String defaultAdminPass;
 
 
     @Autowired
-    public UserService(UserRepository userRepository,
-        RoleRepository roleRepository,
+    public UserService(
+        UserRepository userRepository,
         PasswordEncoder passwordEncoder,
-        @Value("${mobilele.admin.defaultpass}") String defaultAdminPass) {
+        Set<SessionRegistry> sessionRegistries) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
-        this.defaultAdminPass = defaultAdminPass;
+        this.sessionRegistries = sessionRegistries;
     }
 
     public void registerUser(UserRegisterFormDto registrationDTO) {

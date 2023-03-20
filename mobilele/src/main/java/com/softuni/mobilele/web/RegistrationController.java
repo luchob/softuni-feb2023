@@ -33,7 +33,7 @@ public class RegistrationController {
     }
     //todo
 
-    return "redirect:login";
+    return "redirect:/users/login";
   }
 
 

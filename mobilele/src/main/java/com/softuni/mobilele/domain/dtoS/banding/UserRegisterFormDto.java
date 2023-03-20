@@ -29,9 +29,6 @@ public class UserRegisterFormDto {
     @Size(min = 5, max = 20)
     private String lastName;
 
-    @NotNull
-    private UserRoleEnum role;
-
     public String getEmail() {
         return email;
     }
@@ -71,13 +68,5 @@ public class UserRegisterFormDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public UserRoleEnum getRole() {
-        return role;
-    }
-
-    public void setRole(UserRoleEnum role) {
-        this.role = role;
     }
 }
