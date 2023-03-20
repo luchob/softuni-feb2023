@@ -1,6 +1,7 @@
 package com.softuni.mobilele.services;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import com.softuni.mobilele.domain.dtoS.banding.UserRegisterFormDto;
@@ -68,7 +69,7 @@ class UserServiceTest {
         setEmail("test@example.com").
         setFirstName("Test").
         setLastName("Testov").
-        setPassword("topsecret");
+        setPassword(testPassword);
 
     when(mockPasswordEncoder.encode(testRegistrationDTO.getPassword())).
         thenReturn(encodedPassword);
