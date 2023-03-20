@@ -16,13 +16,16 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
 
     @Autowired
     public UserService(UserRepository userRepository,
-        PasswordEncoder passwordEncoder) {
+        PasswordEncoder passwordEncoder,
+        EmailService emailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     public void registerUser(UserRegisterFormDto registrationDTO) {
@@ -34,6 +37,9 @@ public class UserService {
             setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
 
         userRepository.save(userEntity);
+
+        emailService.sendRegistrationEmail(userEntity.getEmail(),
+            userEntity.getFirstName() + " " + userEntity.getLastName());
 
         //
     }

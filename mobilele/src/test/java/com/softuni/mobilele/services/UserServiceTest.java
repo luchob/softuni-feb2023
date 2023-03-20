@@ -1,7 +1,10 @@
 package com.softuni.mobilele.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.softuni.mobilele.domain.dtoS.banding.UserRegisterFormDto;
@@ -27,6 +30,9 @@ class UserServiceTest {
   @Mock
   private UserRepository mockUserRepository;
 
+  @Mock
+  private EmailService mockEmailService;
+
   @Captor
   private ArgumentCaptor<UserEntity> userEntityArgumentCaptor;
 
@@ -34,7 +40,10 @@ class UserServiceTest {
 
   @BeforeEach
   void setUp() {
-    toTest = new UserService(mockUserRepository, mockPasswordEncoder);
+    toTest = new UserService(
+        mockUserRepository,
+        mockPasswordEncoder,
+        mockEmailService);
   }
 
   @Test
@@ -54,7 +63,7 @@ class UserServiceTest {
     toTest.registerUser(testRegistrationDTO);
 
     //ASSERT
-    Mockito.verify(mockUserRepository).save(any());
+    verify(mockUserRepository).save(any());
   }
 
   @Test
@@ -64,11 +73,14 @@ class UserServiceTest {
 
     String testPassword = "topsecret";
     String encodedPassword = "encoded_password";
+    String email = "test@example.com";
+    String firstName = "Test";
+    String lastName = "Testov";
 
     UserRegisterFormDto testRegistrationDTO = new UserRegisterFormDto().
         setEmail("test@example.com").
-        setFirstName("Test").
-        setLastName("Testov").
+        setFirstName(firstName).
+        setLastName(lastName).
         setPassword(testPassword);
 
     when(mockPasswordEncoder.encode(testRegistrationDTO.getPassword())).
@@ -79,11 +91,14 @@ class UserServiceTest {
     toTest.registerUser(testRegistrationDTO);
 
     //ASSERT
-    Mockito.verify(mockUserRepository).save(userEntityArgumentCaptor.capture());
+    verify(mockUserRepository).save(userEntityArgumentCaptor.capture());
 
     UserEntity actualSavedUser = userEntityArgumentCaptor.getValue();
-    Assertions.assertEquals(testRegistrationDTO.getEmail(), actualSavedUser.getEmail());
-    Assertions.assertEquals(encodedPassword, actualSavedUser.getPassword());
+    assertEquals(testRegistrationDTO.getEmail(), actualSavedUser.getEmail());
+    assertEquals(encodedPassword, actualSavedUser.getPassword());
+
+    verify(mockEmailService).
+        sendRegistrationEmail(email, firstName + " " + lastName);
 
   }
 }
