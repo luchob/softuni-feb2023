@@ -15,23 +15,18 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
-    private RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final String defaultAdminPass;
 
 
     @Autowired
     public UserService(UserRepository userRepository,
-        RoleRepository roleRepository,
-        PasswordEncoder passwordEncoder,
-        @Value("${mobilele.admin.defaultpass}") String defaultAdminPass) {
+        PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
-        this.defaultAdminPass = defaultAdminPass;
     }
 
     public void registerUser(UserRegisterFormDto registrationDTO) {
+
         UserEntity userEntity = new UserEntity().
             setFirstName(registrationDTO.getFirstName()).
             setLastName(registrationDTO.getLastName()).

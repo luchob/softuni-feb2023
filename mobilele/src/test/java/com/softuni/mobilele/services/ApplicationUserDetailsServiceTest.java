@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.opentest4j.AssertionFailedError;
 import org.springframework.security.core.GrantedAuthority;
@@ -41,6 +42,7 @@ public class ApplicationUserDetailsServiceTest {
   @Test
   void testUserFound() {
 
+    // ARRANGE
     UserRoleEntity testAdminRole = new UserRoleEntity().setRole(UserRoleEnum.ADMIN);
     UserRoleEntity testUserRole = new UserRoleEntity().setRole(UserRoleEnum.USER);
 
@@ -53,18 +55,26 @@ public class ApplicationUserDetailsServiceTest {
 
     when(mockUserRepository.findByEmail(EXISTING_EMAIL)).
         thenReturn(Optional.of(testUserEntity));
+    // EO: ARRANGE
 
+
+    // ACT
     UserDetails adminDetails =
         toTest.loadUserByUsername(EXISTING_EMAIL);
+    // EO: ACT
 
     // ASSERT
     Assertions.assertNotNull(adminDetails);
     Assertions.assertEquals(EXISTING_EMAIL, adminDetails.getUsername());
     Assertions.assertEquals(testUserEntity.getPassword(), adminDetails.getPassword());
 
-    Assertions.assertEquals(2, adminDetails.getAuthorities().size());
+    Assertions.assertEquals(2,
+        adminDetails.getAuthorities().size(),
+        "The authorities are supposed to be just two - ADMIN/USER.");
+
     assertRole(adminDetails.getAuthorities(), "ROLE_ADMIN");
     assertRole(adminDetails.getAuthorities(), "ROLE_USER");
+    // EO: ASSERT
   }
 
   private void assertRole(Collection<? extends GrantedAuthority> authorities,
