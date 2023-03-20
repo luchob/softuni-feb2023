@@ -2,13 +2,14 @@ package com.softuni.mobilele.domain.dtoS.banding;
 
 import com.softuni.mobilele.validations.matchingPasswords.PasswordMatch;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @PasswordMatch(password = "password", confirmPassword = "confirmPassword")
 public class UserRegisterFormDto {
 
-    @NotNull
+    @NotBlank
     @Email
     private String email;
 
