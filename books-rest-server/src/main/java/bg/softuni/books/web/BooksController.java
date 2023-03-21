@@ -2,6 +2,11 @@ package bg.softuni.books.web;
 
 import bg.softuni.books.model.dto.BookDTO;
 import bg.softuni.books.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +37,12 @@ public class BooksController {
         ok(bookService.getAllBooks());
   }
 
+  @Operation(summary = "Get a book by its id")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Found the book", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BookDTO.class))}),
+      @ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content),
+      @ApiResponse(responseCode = "404", description = "Book not found", content = @Content) }
+  )
   @GetMapping("/{id}")
   public ResponseEntity<BookDTO> getBookById(@PathVariable("id") Long bookId) {
     Optional<BookDTO> theBook = bookService.findBookById(bookId);
