@@ -1,8 +1,7 @@
 package com.softuni.mobilele.services;
 
-import com.softuni.mobilele.domain.dtoS.model.UserRoleModel;
-import com.softuni.mobilele.domain.dtoS.veiw.UserRoleViewDto;
-import com.softuni.mobilele.domain.entities.UserRoleEntity;
+import com.softuni.mobilele.domain.dtos.model.UserRoleModel;
+import com.softuni.mobilele.domain.dtos.veiw.UserRoleViewDto;
 import com.softuni.mobilele.domain.enums.UserRoleEnum;
 import com.softuni.mobilele.repositories.RoleRepository;
 import org.modelmapper.ModelMapper;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;

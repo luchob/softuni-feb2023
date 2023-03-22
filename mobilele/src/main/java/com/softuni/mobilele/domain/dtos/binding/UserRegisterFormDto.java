@@ -1,4 +1,4 @@
-package com.softuni.mobilele.domain.dtoS.banding;
+package com.softuni.mobilele.domain.dtos.binding;
 
 import com.softuni.mobilele.validations.matchingPasswords.PasswordMatch;
 import jakarta.validation.constraints.Email;

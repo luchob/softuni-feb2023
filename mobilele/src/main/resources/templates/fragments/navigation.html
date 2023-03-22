@@ -6,18 +6,28 @@
 <body>
 
 <nav th:fragment="navigation" class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+
   <a class="navbar-brand" href="/"><img alt="car picture" th:src="@{/images/car.png}" class="logo"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+    <ul class="navbar-nav mr-auto col-12 justify-content-end">
+      <th:block sec:authorize="!isAuthenticated()">
 
-    <!-- Register and login -->
-    <th:block sec:authorize="!isAuthenticated()">
-      <ul class="navbar-nav mr-auto col-12 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/brands/all}">All Brands</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/offers/all}">All Offers</a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" th:href="@{/users/register}">Register</a>
         </li>
@@ -25,32 +35,27 @@
         <li class="nav-item">
           <a class="nav-link" th:href="@{/users/login}">Login</a>
         </li>
-      </ul>
-    </th:block>
 
-    <th:block>
-      <ul class="navbar-nav mr-auto col-12 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/brands/all}">All Brands</a>
-        </li>
+      </th:block>
 
+      <th:block sec:authorize="isAuthenticated()">
         <li class="nav-item">
           <a class="nav-link" th:href="@{/offers/add}">Add Offer</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/offers/all">All Offers</a>
-        </li>
-
-
-        <li class="nav-item" sec:authorize="isAuthenticated()">
-          <form method="POST" th:action="@{/users/logout}"  class="form-inline my-2 my-lg-0 border px-3">
-            <button type="submit" name="submit" value="value" class="btn btn-link nav-link">Logout</button>
+          <form method="POST" th:action="@{/users/logout}"
+                class="form-inline my-2 my-lg-0 border px-3">
+            <button type="submit" name="submit" value="value" class="btn btn-link nav-link">Logout
+            </button>
           </form>
 
         </li>
-      </ul>
-    </th:block>
+      </th:block>
+
+    </ul>
+
+
   </div>
 </nav>
 

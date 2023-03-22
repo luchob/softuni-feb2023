@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 
+//TODO: fix type in entity
+
 @Entity
 @Table(name = "offers")
 public class OfferEntity extends BaseEntity {

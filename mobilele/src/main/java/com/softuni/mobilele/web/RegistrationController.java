@@ -1,11 +1,10 @@
 package com.softuni.mobilele.web;
 
-import com.softuni.mobilele.domain.dtoS.banding.UserRegisterFormDto;
+import com.softuni.mobilele.domain.dtos.binding.UserRegisterFormDto;
 import com.softuni.mobilele.services.EmailService;
 import com.softuni.mobilele.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;

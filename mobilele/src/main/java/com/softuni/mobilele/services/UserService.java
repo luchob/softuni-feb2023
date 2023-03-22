@@ -1,13 +1,9 @@
 package com.softuni.mobilele.services;
 
-import com.softuni.mobilele.domain.dtoS.banding.UserRegisterFormDto;
-import com.softuni.mobilele.domain.dtoS.model.UserModel;
+import com.softuni.mobilele.domain.dtos.binding.UserRegisterFormDto;
 import com.softuni.mobilele.domain.entities.UserEntity;
-import com.softuni.mobilele.repositories.RoleRepository;
 import com.softuni.mobilele.repositories.UserRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

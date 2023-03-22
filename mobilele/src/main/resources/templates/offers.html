@@ -14,28 +14,55 @@
 
 <div class="container-fluid">
     <h2 class="text-center text-white mt-5">All Offers</h2>
-    <div class="offers row mx-auto d-flex flex-row justify-content-center">
+
+
+    <div
+        th:each = "offer: ${offers.getContent()}"
+        th:object = "${offer}"
+        class="offers row mx-auto d-flex flex-row justify-content-center">
         <div class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
             <div class="card-img-top-wrapper">
-                <img class="card-img-top" src="/" alt="Car image">
+                <img class="card-img-top" th:src="*{imageUrl}" alt="Car image">
             </div>
             <div class="card-body pb-1">
-                <h5 class="card-title">
-                    Offer year Brand name Model name</h5>
+                <h5 class="card-title" th:text="*{offerSummary()}">
+                    Offer summary
+                </h5>
             </div>
             <ul class="offer-details list-group list-group-flush">
                 <li class="list-group-item">
-                    <div class="card-text"><span>• Mileage</span></div>
-                    <div class="card-text"><span>• Price</span></div>
-                    <div class="card-text"><span>• Engine type</span></div>
-                    <div class="card-text"><span>• Transmission type</span></div>
+                    <div class="card-text">• Mileage <th:block th:text="*{mileage}"></th:block></div>
+                    <div class="card-text">• Price <th:block th:text="*{price}"></th:block></div>
+                    <div class="card-text">• Engine type <th:block th:text="*{engine}"></th:block></div>
+                    <div class="card-text">• Transmission type <th:block th:text="*{transmission}"></th:block></div>
                 </li>
             </ul>
             <div class="card-body">
-                <a class="card-link" href="/">Details</a>
+                <a class="card-link" th:href="@{/offers/{offerId}(offerId=*{offerId})}">Details</a>
             </div>
         </div>
     </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${offers.isFirst() ? 'disabled' : ''}">
+                <a th:unless="${offers.isFirst()}" class="page-link" th:href="@{/offers/all(size=${offers.getSize()}, page=${0})}">First</a>
+                <a th:if="${offers.isFirst()}" class="page-link" href="#">First</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+            <li class="page-item" th:classappend="${offers.isLast() ? 'disabled' : ''}">
+                <a th:unless="${offers.isLast()}" class="page-link" th:href="@{/offers/all(size=${offers.getSize()}, page=${offers.getTotalPages() - 1})}">Last</a>
+                <a th:if="${offers.isLast()}" class="page-link" href="#">Last</a>
+            </li>
+        </ul>
+    </nav>
+
+
 </div>
 
 <div>
