@@ -22,3 +22,11 @@ mail:
 mobilele:
   admin:
     defaultpass: ${DEFAULT_PASS:test}
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"

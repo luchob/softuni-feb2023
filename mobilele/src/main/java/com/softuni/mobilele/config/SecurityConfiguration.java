@@ -2,6 +2,7 @@ package com.softuni.mobilele.config;
 
 import com.softuni.mobilele.repositories.UserRepository;
 import com.softuni.mobilele.services.ApplicationUserDetailsService;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ public class SecurityConfiguration {
             authorizeHttpRequests().
         // allow access to all static files (images, CSS, js)
             requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
+            requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
         // the URL-s below are available for all users - logged in and anonymous
             requestMatchers("/", "/users/login", "/users/register", "/users/login-error", "/offers/all").permitAll().
         anyRequest().authenticated().
