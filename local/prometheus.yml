@@ -1,0 +1,23 @@
+# check sample config here
+# https://github.com/prometheus/prometheus/blob/release-2.1/config/testdata/conf.good.yml
+
+# my global config
+global:
+  scrape_interval:     5s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: rest-service
+
+    honor_labels: true
+    # scrape_interval is defined by the configured global (15s).
+    # scrape_timeout is defined by the global default (10s).
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    metrics_path: /actuator/prometheus
+    scheme: http
+
+    static_configs:
+      - targets: ['host.docker.internal:8081']
