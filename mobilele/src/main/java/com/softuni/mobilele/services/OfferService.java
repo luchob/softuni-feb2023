@@ -1,10 +1,13 @@
 package com.softuni.mobilele.services;
 
+import com.softuni.mobilele.domain.dtos.model.SearchOfferDTO;
 import com.softuni.mobilele.domain.dtos.veiw.OfferDetailsViewDTO;
 import com.softuni.mobilele.domain.entities.OfferEntity;
 import com.softuni.mobilele.domain.enums.UserRoleEnum;
 import com.softuni.mobilele.repositories.OfferRepository;
+import com.softuni.mobilele.repositories.OfferSpecification;
 import com.softuni.mobilele.services.exception.ObjectNotFoundException;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,6 +57,14 @@ public class OfferService {
     offerRepository.
         findOfferEntityByOfferId(id).
         ifPresent(offerRepository::delete);
+  }
+
+  public List<OfferDetailsViewDTO> findOffers(SearchOfferDTO filter) {
+    return
+        offerRepository.findAll(new OfferSpecification(filter)).
+            stream().
+            map(this::map).
+            toList();
   }
 
   public boolean isOwner(UserDetails userDetails, UUID id) {
