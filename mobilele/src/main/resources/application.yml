@@ -23,6 +23,14 @@ mail:
   username: ${MAIL_USERNAME:admin@example.com}
   password: ${MAIL_PASS:}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8081
+
 mobilele:
   admin:
     defaultpass: ${DEFAULT_PASS:test}

@@ -15,3 +15,15 @@ services:
     ports:
       - "1025:1025" # smtp server
       - "8025:8025" # web ui
+  promtool:
+    image: prom/prometheus:v2.43.0
+    ports:
+      - 9090:9090
+    volumes:
+      - type: bind
+        source: ./prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana:8.5.22
+    ports:
+      - 3000:3000
