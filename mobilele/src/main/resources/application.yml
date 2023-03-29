@@ -18,10 +18,10 @@ spring:
       mode: always
 
 mail:
-  host: localhost
-  port: 1025
-  username: "admin@example.com"
-  password: ""
+  host: ${MAIL_HOST:localhost}
+  port: ${MAIL_PORT:1025}
+  username: ${MAIL_USERNAME:admin@example.com}
+  password: ${MAIL_PASS:}
 
 mobilele:
   admin:
