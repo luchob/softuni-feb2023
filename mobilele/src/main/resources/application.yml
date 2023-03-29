@@ -7,7 +7,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     defer-datasource-initialization: true
   mvc:
     hiddenmethod:
@@ -15,7 +15,7 @@ spring:
         enabled: true
   sql:
     init:
-      mode: always
+      mode: never
 
 mail:
   host: ${MAIL_HOST:localhost}
